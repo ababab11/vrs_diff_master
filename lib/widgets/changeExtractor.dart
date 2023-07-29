@@ -4,6 +4,7 @@ import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:vrs_diff_master/function/hasher.dart';
 
+import '../function/countColumnsInFirstFile.dart';
 import '../function/getDate.dart';
 import '../function/writeArrayToFile.dart';
 
@@ -30,6 +31,8 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
   List<String> outputArray = []; //書き出し用配列
   String filename = "";
   int count = 0 ;//抽出対象件数
+  int vaccineRecordIndexOld = 0;//何回目まで記録されているか（古い方のデータ）
+  int vaccineRecordIndexNew = 0;//何回目まで記録されているか（新しい方のデータ）
 
 
 
@@ -38,6 +41,8 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
     firstDo();
   }
   Future<void> firstDo() async {
+    vaccineRecordIndexOld = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesA) as int;
+    vaccineRecordIndexNew = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesB) as int;
     valueOfProgress = 0.0;
     String directoryPath = currentDirectory.path;
     date = GetDate.getCurrentDateTime();
@@ -121,6 +126,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
 
     return outputArray;
   }
+
 
 
   @override

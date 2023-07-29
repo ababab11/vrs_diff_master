@@ -33,6 +33,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
   int count = 0 ;//抽出対象件数
   int vaccineRecordIndexOld = 0;//何回目まで記録されているか（古い方のデータ）
   int vaccineRecordIndexNew = 0;//何回目まで記録されているか（新しい方のデータ）
+  int calculateDifference2 = 0; //接種時期の差
 
 
 
@@ -43,6 +44,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
   Future<void> firstDo() async {
     vaccineRecordIndexOld = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesA) as int;
     vaccineRecordIndexNew = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesB) as int;
+    calculateDifference2 = vaccineRecordIndexNew -vaccineRecordIndexOld;
     valueOfProgress = 0.0;
     String directoryPath = currentDirectory.path;
     date = GetDate.getCurrentDateTime();
@@ -76,8 +78,9 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
       for (var row in csvRows) {
         String key = row[0].toString(); // キャストは不要
 
-        String value = Hasher.hashStringTo128Bit(row[0].toString()); // 値のキャストが必要
-        csvMap[key] = value;
+        String value1 = addMultipleCommas(row.toString(),calculateDifference2) ;
+        String value2 = await Hasher.hashStringTo128Bit(value1); // 値のキャストが必要
+        csvMap[key] = value2;
       }
       numerator = numerator + 1;
       updateProgress(denominator,numerator);
@@ -126,6 +129,12 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
 
     return outputArray;
   }
+
+  String addMultipleCommas(String inputString, int numCommas) {
+    String commas = List.filled(numCommas * 8, ',').join();
+    return inputString + commas;
+  }
+
 
 
 

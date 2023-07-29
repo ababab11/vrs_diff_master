@@ -75,13 +75,16 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
       String csvContent = await File(file.path).readAsString();
       List<List<dynamic>> csvRows = CsvToListConverter().convert(csvContent);
 
+      // 例: createCsvMap関数内の処理
       for (var row in csvRows) {
         String key = row[0].toString(); // キャストは不要
-
-        String value1 = addMultipleCommas(row.toString(),calculateDifference2) ;
+        String value1 = addMultipleCommas(row.join(','), calculateDifference2); // rowを文字列として連結
+        print(value1);
+        print("111");
         String value2 = await Hasher.hashStringTo128Bit(value1); // 値のキャストが必要
         csvMap[key] = value2;
       }
+
       numerator = numerator + 1;
       updateProgress(denominator,numerator);
 
@@ -116,13 +119,16 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
       for (var row in csvRows) {
         String key = row[0].toString();
         String? value = hash[key];
-
-        if (value != null && value != Hasher.hashStringTo128Bit(row.toString())) {
+        String joinedRow = row.join(','); // リストをカンマで連結
+        print(joinedRow); // ここでは[]が含まれずに出力されます。
+        print("222");
+        if (value != null && value != Hasher.hashStringTo128Bit(joinedRow)) { // 連結した文字列をハッシュ関数に渡す
           // ハッシュの値と行を比較し、違う場合は書き込み用配列に追加
-          outputArray.add(csvContent);
+          outputArray.add(joinedRow);
           count = count +1;
         }
       }
+
       numerator = numerator + 1;
       updateProgress(denominator,numerator);
     }

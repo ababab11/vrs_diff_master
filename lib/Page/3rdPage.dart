@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vrs_diff_master/Page/explainPage1.dart';
 import 'package:vrs_diff_master/widgets/changeExtractor.dart';
 import 'package:vrs_diff_master/widgets/findNewPersonalNumbers.dart';
 
@@ -65,7 +66,7 @@ class _ThirdPageState extends State<ThirdPage> {
             const Text(
               'STEP3 処理を選択して ',
               style: TextStyle(
-                fontSize: 16, // テキストのサイズ
+                fontSize: 20, // テキストのサイズ
                 fontWeight: FontWeight.bold, // テキストの太さ
                 fontFamily: 'Arial', // テキストのフォントファミリー
               ),
@@ -87,31 +88,40 @@ class _ThirdPageState extends State<ThirdPage> {
             ),
             SizedBox(height: 16),
             Container(
-              width: 300,
+              width: 450,
+              height: 40,
               child:
             ElevatedButton(onPressed: (){
               showIndex = 1;
               setState(() {
               });
             },
-              child:Text("変更のあったデータを抽出"),
+              child:Text("変更のあったデータを抽出",
+                style: TextStyle(
+                  fontSize: 20, // ここで文字サイズを指定
+                ),),
             ),),
 
             SizedBox(height: 16),
             Container(
-              width: 300,
+              width: 450,
+              height: 40,
               child: ElevatedButton(onPressed: (){
                 showIndex = 2;
                 setState(() {
 
                 });
               },
-                  child:Text("接種記録の削除があるデータを抽出"),
+                  child:Text("接種記録の削除があるデータを抽出",
+                      style: TextStyle(
+                        fontSize: 20, // ここで文字サイズを指定
+                      )),
               ),
             ),
             SizedBox(height: 16,),
             Container(
-              width: 300,
+              width: 450,
+              height: 40,
               child: ElevatedButton(onPressed: (){
                 showIndex = 3;
                 valueOfProgress = valueOfProgress - 0.1;
@@ -119,18 +129,25 @@ class _ThirdPageState extends State<ThirdPage> {
 
                 });
               },
-                child:Text("新出の個人番号に対応するデータを抽出"),
+                child:Text("新出の個人番号に対応するデータを抽出",
+                    style: TextStyle(
+                      fontSize: 20, // ここで文字サイズを指定
+                    )),
               ),
             ),
             SizedBox(height: 16,),
             Container(
-              width: 300,
+              width: 450,
+              height: 40,
               child: ElevatedButton(onPressed: () async {
                  showIndex = 4;
                  setState(() {
                  });
               },
-                child:Text("削除された個人番号に対応するデータを抽出"),
+                child:Text("削除された個人番号に対応するデータを抽出",
+                    style: TextStyle(
+                      fontSize: 20, // ここで文字サイズを指定
+                    )),
               ),
             ),
             SizedBox(height: 16,),
@@ -175,6 +192,12 @@ class _ThirdPageState extends State<ThirdPage> {
               ListTile(
                 leading: Icon(CupertinoIcons.info),
                 title: Text('【変更のあったデータを抽出】'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ExplainPageOne()),
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(CupertinoIcons.info),

@@ -10,6 +10,19 @@ class ExplainPageOne extends StatefulWidget {
 class _ExplainPageOneState extends State<ExplainPageOne> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('【変更のあったデータの抽出】の説明',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            )),
+
+      ),
+      body: Center(
+        child: Image.asset('assets/images/新規 ビットマップ イメージ.jpg'),
+      ),
+    );
   }
 }

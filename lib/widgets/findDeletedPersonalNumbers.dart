@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:vrs_diff_master/function/getDate.dart';
 import 'package:csv/csv.dart';
 
@@ -11,7 +10,7 @@ class FindDeletedPersonalNumbers extends StatefulWidget {
   //const FindDeletedPersonalNumbers({super.key});
   final List<FileSystemEntity> csvFilesA;
   final List<FileSystemEntity> csvFilesB;
-  FindDeletedPersonalNumbers({required this.csvFilesA,required this.csvFilesB});
+  const FindDeletedPersonalNumbers({super.key, required this.csvFilesA,required this.csvFilesB});
 
   @override
   State<FindDeletedPersonalNumbers> createState() => _FindDeletedPersonalNumbersState();
@@ -29,28 +28,25 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
   String filename = "";
   int count = 0 ;//抽出対象件数
 
-  @override
 
+
+  @override
   void initState() {
-    print("０ssaa終わり");
     super.initState();
     firstDo();
-    print("０ss終わり");
   }
   Future<void> firstDo() async {
     valueOfProgress = 0.0;
     date = GetDate.getCurrentDateTime();
-    filename = date +"【削除個人識別番号分】.csv";
+    filename = "$date【削除個人識別番号分】.csv";
     denominator = getCsvFilesCount(); //分母取得
-    print("０終わり");
-    await processCsvFiles(widget.csvFilesB); //ハッシュ作成
-    print("００終わり");
     String directoryPath = currentDirectory.path;
+    await processCsvFiles(widget.csvFilesB); //ハッシュ作成
+
+
     ///////////////////ここから追加
     await processAndCompareCsvFiles(widget.csvFilesA);
-    print("１終わり");
     await FileWriter.writeArrayToFile(outputArray,directoryPath, filename);
-    print("２終わり");
     numerator = numerator + 1;
     updateProgress(numerator, numerator);
 
@@ -72,7 +68,7 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
       valueOfProgress = denominator > 0 ? numerator / denominator : 0.0;
     });}
 
-  Future<void> processCsvFiles(List<FileSystemEntity> csvFiles) async {  //ファイルBをハッシュに入れる
+  Future<void> processCsvFiles(List<FileSystemEntity> csvFiles) async {  //ファイルAをハッシュに入れる
     for (var file in csvFiles) {
       final input = new File(file.path).openRead();
       final fields = await input.transform(utf8.decoder).transform(new CsvToListConverter()).toList();
@@ -83,17 +79,16 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
       }
       numerator = numerator +1;
       updateProgress(getCsvFilesCount()+1, numerator);
-      print("５終わり");
     }
-
-    print("３終わり");
 
   }
 
-  Future<void> processAndCompareCsvFiles(List<FileSystemEntity> csvFiles) async {  //ファイルAを読み、存在しなければ書き出し用配列に入れる
+
+  Future<void> processAndCompareCsvFiles(List<FileSystemEntity> csvFiles) async {//ファイルAを読み、存在しなければ書き出し用配列に入れる
     for (var file in csvFiles) {
-      final input = new File(file.path).openRead();
-      final fields = await input.transform(utf8.decoder).transform(new CsvToListConverter()).toList();
+      print("hhhh");
+      final input = File(file.path).openRead();
+      final fields = await input.transform(utf8.decoder).transform(const CsvToListConverter()).toList();
 
       for (var row in fields) {
         String key = row[0].toString();
@@ -104,12 +99,12 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
       }
       numerator = numerator +1;
       updateProgress(getCsvFilesCount()+1, numerator);
-      print("４終わり");
+
     }
   }
 
 
-
+  @override
   Widget build(BuildContext context) {
 
     if (processingComplete) {
@@ -119,7 +114,7 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Processing Completed'),
-              content:  Text(currentDirectory.path+"\\\nに"+filename+"のファイル名で保存しました(対象は"+count.toString()+"件)"),
+              content:  Text("${currentDirectory.path}\\\nに$filenameのファイル名で保存しました(対象は$count件)"),
               actions: <Widget>[
                 TextButton(
                   child: const Text('OK'),

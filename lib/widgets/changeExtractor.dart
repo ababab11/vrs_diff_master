@@ -40,7 +40,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
   void initState() {
     super.initState();
     firstDo();
-    print("０ss終わり");
+    //print("０ss終わり");
   }
   Future<void> firstDo() async {
     vaccineRecordIndexOld = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesA) as int;

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vrs_diff_master/widgets/changeExtractor.dart';
 import 'package:vrs_diff_master/widgets/findNewPersonalNumbers.dart';
@@ -143,42 +144,46 @@ class _ThirdPageState extends State<ThirdPage> {
 
       endDrawer: Container(
         width: 400,
-        child: Drawer( child: ListView(
-          children: [
-            ListTile(
-              leading: Icon(Icons.folder_open_outlined),
-              title: Text('出力フォルダを開く'),
-              onTap: () {
-                openOutputFolder(); // フォルダを開く関数を呼び出す
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('↓　各機能の説明は下記をクリック　↓'),
-            ),
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text(
-                    '【変更のあったデータを抽出】の説明を見る'),
-            ),
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text(
-                  '【接種記録の削除があるデータを抽出】の説明を見る'),
-            ),
-            ListTile(
+        child: Drawer(
+          child: ListView(
+            children: [
+              // グループ1
+              SizedBox(height: 30,),
+              ListTile(
+                leading: Icon(Icons.folder_open_outlined),
+                title: Text('出力フォルダを開く'),
+                onTap: () {
+                  openOutputFolder(); // フォルダを開く関数を呼び出す
+                },
+              ),
+              Divider(),
+              ListTile(
+                //leading: Icon(Icons.settings),
+                title: Text('↓↓↓各機能の説明は下記をクリック ↓↓↓'),
+              ),
+              // グループを区切る区切り線を追加
+              ListTile(
+                leading: Icon(CupertinoIcons.info),
+                title: Text('【変更のあったデータを抽出】'),
+              ),
+              ListTile(
+                leading: Icon(CupertinoIcons.info),
+                title: Text('【接種記録の削除があるデータを抽出】'),
+              ),
 
-              title: Text(
-                  '【新出の個人番号に対応するデータを抽出】'),
-            ),
-            ListTile(
+              ListTile(
+                leading: Icon(CupertinoIcons.info),
+                title: Text('【新出の個人番号に対応するデータを抽出】'),
+              ),
+              ListTile(
+                leading: Icon(CupertinoIcons.info),
+                title: Text('【削除された個人番号に対応するデータを抽出】'),
+              ),
+              Divider(),
+            ],
+          ),
+        )
 
-              title: Text(
-                  '【削除された個人番号に対応するデータを抽出】'),
-            ),
-
-          ],
-        ),),
       ),
     );
   }

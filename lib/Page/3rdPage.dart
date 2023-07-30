@@ -145,10 +145,21 @@ class _ThirdPageState extends State<ThirdPage> {
       endDrawer: Container(
         width: 400,
         child: Drawer(
-          child: ListView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // グループ1
-              SizedBox(height: 30,),
+              Container(
+                color: Colors.grey, // 背景色を調整する場合はここで指定
+                padding: EdgeInsets.all(16),
+                child: Text(
+                  'MENU',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // 文字色を調整する場合はここで指定
+                  ),
+                ),
+              ),
               ListTile(
                 leading: Icon(Icons.folder_open_outlined),
                 title: Text('出力フォルダを開く'),
@@ -158,8 +169,7 @@ class _ThirdPageState extends State<ThirdPage> {
               ),
               Divider(),
               ListTile(
-                //leading: Icon(Icons.settings),
-                title: Text('↓↓↓各機能の説明は下記をクリック ↓↓↓'),
+                leading: Text('↓↓↓各機能の説明は下記をクリック ↓↓↓'),
               ),
               // グループを区切る区切り線を追加
               ListTile(
@@ -170,7 +180,6 @@ class _ThirdPageState extends State<ThirdPage> {
                 leading: Icon(CupertinoIcons.info),
                 title: Text('【接種記録の削除があるデータを抽出】'),
               ),
-
               ListTile(
                 leading: Icon(CupertinoIcons.info),
                 title: Text('【新出の個人番号に対応するデータを抽出】'),
@@ -182,7 +191,8 @@ class _ThirdPageState extends State<ThirdPage> {
               Divider(),
             ],
           ),
-        )
+        ),
+
 
       ),
     );

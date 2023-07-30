@@ -32,19 +32,25 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
   @override
 
   void initState() {
+    print("０ssaa終わり");
     super.initState();
     firstDo();
+    print("０ss終わり");
   }
   Future<void> firstDo() async {
     valueOfProgress = 0.0;
     date = GetDate.getCurrentDateTime();
     filename = date +"【削除個人識別番号分】.csv";
     denominator = getCsvFilesCount(); //分母取得
+    print("０終わり");
     await processCsvFiles(widget.csvFilesB); //ハッシュ作成
+    print("００終わり");
     String directoryPath = currentDirectory.path;
     ///////////////////ここから追加
     await processAndCompareCsvFiles(widget.csvFilesA);
+    print("１終わり");
     await FileWriter.writeArrayToFile(outputArray,directoryPath, filename);
+    print("２終わり");
     numerator = numerator + 1;
     updateProgress(numerator, numerator);
 
@@ -77,7 +83,10 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
       }
       numerator = numerator +1;
       updateProgress(getCsvFilesCount()+1, numerator);
+      print("５終わり");
     }
+
+    print("３終わり");
 
   }
 
@@ -95,6 +104,7 @@ class _FindDeletedPersonalNumbersState extends State<FindDeletedPersonalNumbers>
       }
       numerator = numerator +1;
       updateProgress(getCsvFilesCount()+1, numerator);
+      print("４終わり");
     }
   }
 

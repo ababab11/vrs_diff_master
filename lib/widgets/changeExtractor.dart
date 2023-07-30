@@ -40,6 +40,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
   void initState() {
     super.initState();
     firstDo();
+    print("０ss終わり");
   }
   Future<void> firstDo() async {
     vaccineRecordIndexOld = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesA) as int;
@@ -79,8 +80,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
       for (var row in csvRows) {
         String key = row[0].toString(); // キャストは不要
         String value1 = addMultipleCommas(row.join(','), calculateDifference2); // rowを文字列として連結
-        print(value1);
-        print("111");
+
         String value2 = await Hasher.hashStringTo128Bit(value1); // 値のキャストが必要
         csvMap[key] = value2;
       }
@@ -96,7 +96,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
   void printHashTable(Map<String, String> hashMap) {
     int count = 0;
     for (var entry in hashMap.entries) {
-      print('${entry.key}: ${entry.value}');
+     // print('${entry.key}: ${entry.value}');
       count++;
       if (count >= 10) {
         break; // 10個までの表示に制限
@@ -120,8 +120,7 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
         String key = row[0].toString();
         String? value = hash[key];
         String joinedRow = row.join(','); // リストをカンマで連結
-        print(joinedRow); // ここでは[]が含まれずに出力されます。
-        print("222");
+
         if (value != null && value != Hasher.hashStringTo128Bit(joinedRow)) { // 連結した文字列をハッシュ関数に渡す
           // ハッシュの値と行を比較し、違う場合は書き込み用配列に追加
           outputArray.add(joinedRow);

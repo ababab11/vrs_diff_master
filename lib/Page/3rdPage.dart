@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vrs_diff_master/Page/explainPage1.dart';
 import 'package:vrs_diff_master/Page/explainPage2.dart';
+import 'package:vrs_diff_master/Page/explainPage3.dart';
+import 'package:vrs_diff_master/Page/explainPage4.dart';
 import 'package:vrs_diff_master/widgets/changeExtractor.dart';
 import 'package:vrs_diff_master/widgets/findNewPersonalNumbers.dart';
 
@@ -99,7 +101,7 @@ class _ThirdPageState extends State<ThirdPage> {
             },
               child:Text("変更のあったデータを抽出",
                 style: TextStyle(
-                  fontSize: 20, // ここで文字サイズを指定
+                  fontSize: 17, // ここで文字サイズを指定
                 ),),
             ),),
 
@@ -115,7 +117,7 @@ class _ThirdPageState extends State<ThirdPage> {
               },
                   child:Text("接種記録の削除があるデータを抽出",
                       style: TextStyle(
-                        fontSize: 20, // ここで文字サイズを指定
+                        fontSize: 17, // ここで文字サイズを指定
                       )),
               ),
             ),
@@ -132,7 +134,7 @@ class _ThirdPageState extends State<ThirdPage> {
               },
                 child:Text("新出の個人番号に対応するデータを抽出",
                     style: TextStyle(
-                      fontSize: 20, // ここで文字サイズを指定
+                      fontSize: 17, // ここで文字サイズを指定
                     )),
               ),
             ),
@@ -147,7 +149,7 @@ class _ThirdPageState extends State<ThirdPage> {
               },
                 child:Text("削除された個人番号に対応するデータを抽出",
                     style: TextStyle(
-                      fontSize: 20, // ここで文字サイズを指定
+                      fontSize: 17, // ここで文字サイズを指定
                     )),
               ),
             ),
@@ -213,10 +215,22 @@ class _ThirdPageState extends State<ThirdPage> {
               ListTile(
                 leading: Icon(CupertinoIcons.info),
                 title: Text('【新出の個人番号に対応するデータを抽出】'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ExplainPageThree()),
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(CupertinoIcons.info),
                 title: Text('【削除された個人番号に対応するデータを抽出】'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ExplainPageFour()),
+                  );
+                },
               ),
               Divider(),
             ],

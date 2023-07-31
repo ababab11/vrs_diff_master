@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vrs_diff_master/Page/explainPage1.dart';
+import 'package:vrs_diff_master/Page/explainPage2.dart';
 import 'package:vrs_diff_master/widgets/changeExtractor.dart';
 import 'package:vrs_diff_master/widgets/findNewPersonalNumbers.dart';
 
@@ -202,6 +203,12 @@ class _ThirdPageState extends State<ThirdPage> {
               ListTile(
                 leading: Icon(CupertinoIcons.info),
                 title: Text('【接種記録の削除があるデータを抽出】'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ExplainPageTwo()),
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(CupertinoIcons.info),

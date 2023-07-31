@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:vrs_diff_master/Page/2ndPage.dart';
 import 'package:vrs_diff_master/function/CsvFilePicker.dart';
+import 'package:vrs_diff_master/widgets/myDrawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -103,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      endDrawer: CustomDrawer(),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

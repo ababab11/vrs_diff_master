@@ -1,6 +1,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../widgets/myDrawer.dart';
 import '3rdPage.dart';
 import '../function/CsvFilePicker.dart';
 import '../main.dart';
@@ -63,8 +64,10 @@ class _SecondPageState extends State<SecondPage> {
             )
 
           ],
+
         ),
       ),
+      endDrawer: CustomDrawer(),
     );
   }
 }

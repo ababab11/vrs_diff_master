@@ -1,13 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ExplainPageOne extends StatefulWidget {
-  const ExplainPageOne({Key? key}) : super(key: key);
+class ExplainAboutApp extends StatefulWidget {
+  const ExplainAboutApp({Key? key}) : super(key: key);
 
   @override
-  State<ExplainPageOne> createState() => _ExplainPageOneState();
+  State<ExplainAboutApp> createState() => _ExplainAboutAppState();
 }
 
-class _ExplainPageOneState extends State<ExplainPageOne> {
+class _ExplainAboutAppState extends State<ExplainAboutApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,7 @@ class _ExplainPageOneState extends State<ExplainPageOne> {
 
       ),
       body: Center(
-        child: Image.asset('assets/images/変更あった分.png'),
+        child: Image.asset('assets/images/本アプリについて.png'),
       ),
     );
   }

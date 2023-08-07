@@ -21,7 +21,7 @@ class _ExplainPageTwoState extends State<ExplainPageTwo> {
 
       ),
       body: Center(
-        child: Image.asset('assets/images/記録削除.jpg'),
+        child: Image.asset('assets/images/接種記録削除あった分.png'),
       ),
     );
   }

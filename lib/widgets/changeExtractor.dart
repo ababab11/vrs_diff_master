@@ -43,13 +43,14 @@ class _ChangeExtractorState extends State<ChangeExtractor> {
     //print("０ss終わり");
   }
   Future<void> firstDo() async {
+    updateProgress(denominator,numerator);
     vaccineRecordIndexOld = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesA) as int;
     vaccineRecordIndexNew = await FileColumnCounter.countColumnsInFirstFile(widget.csvFilesB) as int;
     calculateDifference2 = vaccineRecordIndexNew -vaccineRecordIndexOld;
     valueOfProgress = 0.0;
     String directoryPath = currentDirectory.path;
     date = GetDate.getCurrentDateTime();
-    filename = date +"【hennkou分】.csv";
+    filename = date +"【変更分】.csv";
     denominator = getCsvFilesCount(); //分母取得
     hash = await createCsvMap(widget.csvFilesA);
     printHashTable(hash);

@@ -21,7 +21,7 @@ class _ExplainPageThreeState extends State<ExplainPageThree> {
 
       ),
       body: Center(
-        child: Image.asset('assets/images/個人CD新出.jpg'),
+        child: Image.asset('assets/images/新出個人CD分.png'),
       ),
     );
   }

@@ -11,6 +11,7 @@ import 'package:vrs_diff_master/widgets/findNewPersonalNumbers.dart';
 
 import '../widgets/findDeletedPersonalNumbers.dart';
 import '../testFunction/majorFunction01.dart';
+import '../widgets/myDrawer.dart';
 import '../widgets/vaccineRecordExtractor.dart';
 
 class ThirdPage extends StatefulWidget {
@@ -162,83 +163,7 @@ class _ThirdPageState extends State<ThirdPage> {
       ),
 
 
-      endDrawer: Container(
-        width: 400,
-        child: Drawer(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                color: Colors.grey, // 背景色を調整する場合はここで指定
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  'MENU',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white, // 文字色を調整する場合はここで指定
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.folder_open_outlined),
-                title: Text('出力フォルダを開く'),
-                onTap: () {
-                  openOutputFolder(); // フォルダを開く関数を呼び出す
-                },
-              ),
-              Divider(),
-              ListTile(
-                leading: Text('↓↓↓各機能の説明は下記をクリック ↓↓↓'),
-              ),
-              // グループを区切る区切り線を追加
-              ListTile(
-                leading: Icon(CupertinoIcons.info),
-                title: Text('【変更のあったデータを抽出】'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ExplainPageOne()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(CupertinoIcons.info),
-                title: Text('【接種記録の削除があるデータを抽出】'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ExplainPageTwo()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(CupertinoIcons.info),
-                title: Text('【新出の個人番号に対応するデータを抽出】'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ExplainPageThree()),
-                  );
-                },
-              ),
-              ListTile(
-                leading: Icon(CupertinoIcons.info),
-                title: Text('【削除された個人番号に対応するデータを抽出】'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ExplainPageFour()),
-                  );
-                },
-              ),
-              Divider(),
-            ],
-          ),
-        ),
-
-
-      ),
+      endDrawer:CustomDrawer(),
     );
   }
 }

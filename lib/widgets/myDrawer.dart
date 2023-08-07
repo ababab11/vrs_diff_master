@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Page/explainAboutApp.dart';
 import '../Page/explainPage1.dart';
 import '../Page/explainPage2.dart';
 import '../Page/explainPage3.dart';
 import '../Page/explainPage4.dart';
+
 
 void openOutputFolder() async {
   Directory outputDirectory = Directory.current;
@@ -75,6 +77,19 @@ class CustomDrawer extends StatelessWidget {
             ),
             Divider(),
             ListTile(
+              leading: Icon(CupertinoIcons.info),
+              title: Text('本アプリについて'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExplainAboutApp()),
+                );
+
+              },
+            ),
+            Divider(),
+
+            ListTile(
               leading: Text('↓↓↓各機能の説明は下記をクリック ↓↓↓'),
             ),
             ListTile(
@@ -114,6 +129,19 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ExplainPageFour()),
+                );
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.mail_outline),
+              title: Text('開発者への質問'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExplainPageFour()),
+
+
                 );
               },
             ),

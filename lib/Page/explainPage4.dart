@@ -21,7 +21,7 @@ class _ExplainPageFourState extends State<ExplainPageFour> {
 
       ),
       body: Center(
-        child: Image.asset('assets/images/個人CD削除.jpg'),
+        child: Image.asset('assets/images/個人CD削除分.png'),
       ),
     );
   }

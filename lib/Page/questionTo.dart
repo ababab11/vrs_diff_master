@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ExplainAboutApp extends StatefulWidget {
-  const ExplainAboutApp({Key? key}) : super(key: key);
+class QuestionTo extends StatefulWidget {
+  const QuestionTo({Key? key}) : super(key: key);
 
   @override
-  State<ExplainAboutApp> createState() => _ExplainAboutAppState();
+  State<QuestionTo> createState() => _QuestionToState();
 }
 
-class _ExplainAboutAppState extends State<ExplainAboutApp> {
+class _QuestionToState extends State<QuestionTo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("本アプリについて",
+        title: Text('開発者への質問',
             style: TextStyle(
               color: Colors.white,
               fontSize: 24,
@@ -22,7 +22,7 @@ class _ExplainAboutAppState extends State<ExplainAboutApp> {
 
       ),
       body: Center(
-        child: Image.asset('assets/images/本アプリについて.png'),
+        child: Image.asset('assets/images/開発者について.png'),
       ),
     );
   }
